@@ -27,6 +27,11 @@ class Books(models.Model):
         return self.title
     def get_absolute_url(self):
         return  reverse('book-detail',args=[str(self.id)])
+
+    def display_author(self):
+        return ', '.join([author.last_name for author in self.author.all()])
+
+    display_author.short_description = 'Авторы'
 class Status(models.Model):
     name=models.CharField(max_length=20,help_text='Ведите статус экземпляра книги',verbose_name='Статус экземпляра книги')
     def __str__(self):
@@ -38,4 +43,4 @@ class Bookinstance(models.Model):
     status=models.ForeignKey('Status',on_delete=models.CASCADE,null=True,help_text='Измините статус экземпляра книги', verbose_name='Статус экземпляра')
     due_back=models.DateField(null=True,blank=True,help_text='Введите дату конца срока статуса',verbose_name='Дата окончания статуса')
     def __str__(self):
-        return f'{self.inv_nom}{self.book}{self.status}'
+        return f'№ {self.inv_nom} {self.book} {self.status}'
