@@ -10,8 +10,8 @@ class Language(models.Model):
     def __str__(self):
         return self.lang
 class Author(models.Model):
-    first_name=models.CharField(max_length=100,help_text='Введите имя авторя',verbose_name='Имя автора')
-    last_name=models.CharField(max_length=100,help_text='Ведите фамилию автора',verbose_name='Фамилия автора')
+    first_name = models.CharField(max_length=100,help_text='Введите имя авторя',verbose_name='Имя автора')
+    last_name = models.CharField(max_length=100,help_text='Ведите фамилию автора',verbose_name='Фамилия автора')
     date_of_birth=models.DateField(help_text='Ведите дату рождения',verbose_name='Дата рождения',null=True,blank=True)
     date_of_death=models.DateField(help_text='Ведите дату смерти',verbose_name='Дата смерти',null=True,blank=True)
     def __str__(self):
