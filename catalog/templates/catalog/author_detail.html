@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Автор: {{ author.first_name }}  {{ author.last_name }}</h1>
+<p><strong>Имя:</strong> {{ author.first_name }}</p>
+<p><strong>Фамилия: </strong> {{ author.last_name }} </p>
+<p><strong>Дата рождения:</strong> {{author.date_of_birth }}</p>
+<p><strong>Дата смерти:</strong> {{ author.date_of_death }}</p>
+<p><strong>Дата смерти:</strong> {{ author.date_of_death }}</p>
+<ul>
+<p><strong><h2>Книги:</h2></strong> <hr></p>{%for i in author.books_set.all%}
+        <li><a href="{{ i.get_absolute_url }}" ><h3>{{i.title}}</h3></a></li>
+        {% endfor %}
+</ul>
+{% endblock %}

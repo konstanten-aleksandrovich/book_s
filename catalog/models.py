@@ -16,6 +16,8 @@ class Author(models.Model):
     date_of_death=models.DateField(help_text='Ведите дату смерти',verbose_name='Дата смерти',null=True,blank=True)
     def __str__(self):
         return self.last_name
+    def get_absolute_url(self):
+        return  reverse('author-detail',args=[str(self.id)])
 class Books(models.Model):
     title=models.CharField(max_length=200,help_text='Введите название книги',verbose_name='Название книги')
     genre=models.ForeignKey('Ganre',on_delete=models.CASCADE,help_text='Выберите жанр',verbose_name='Жанр книги',null=True)

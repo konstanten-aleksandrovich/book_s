@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Список книг в БД</h1>
+{% if books_list %}
+<ul>
+{% for book in books_list %}
+<li>
+<a href="{{ book.get_absolute_url }}">
+{{ book.title }}</a>
+  ({{book.genre}})
+</li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>В базе данных нет книг</p>
+{% endif %}
+{% endblock %}
