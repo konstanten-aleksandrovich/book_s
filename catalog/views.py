@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import *
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def index(request):
     num_books=Books.objects.all().count()
@@ -28,6 +29,16 @@ class AuthorsListView(generic.ListView):
     paginate_by = 4
 class AuthorDitailView(generic.DetailView):
     model = Author
+
+class LoanedВooksByUserListView(LoginRequiredMixin,generic.ListView):
+    '''Универсальный класс представления списка книг,
+    находящихся в заказе у текущего пользователя.'''
+
+    model = Bookinstance
+    template_name ='catalog/bookinstance_list_borrowed user.html'
+    paginate_by = 10
+    def get_queryset(self):
+        return Bookinstance.objects.filter(borrower=self.request.user).filter(status__pk='2').order_by('due_back')
 
 
 
